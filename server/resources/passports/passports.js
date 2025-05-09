@@ -7,6 +7,16 @@ const UserData = require("../../app/models/UserDataModel");
 require("dotenv").config();
 
 function auth(app) {
+  // app.use(
+  //   session({
+  //     secret: process.env.SECRET,
+  //     resave: false,
+  //     saveUninitialized: false,
+  //     cookie: {
+  //       maxAge: 1000 * 60 * 60 * 24 * 15,
+  //     },
+  //   })
+  // );
   app.use(
     session({
       secret: process.env.SECRET,
@@ -14,6 +24,8 @@ function auth(app) {
       saveUninitialized: false,
       cookie: {
         maxAge: 1000 * 60 * 60 * 24 * 15,
+        secure: process.env.NODE_ENV === "production",
+        sameSite: "none",
       },
     })
   );
