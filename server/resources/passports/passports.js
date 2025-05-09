@@ -7,16 +7,8 @@ const UserData = require("../../app/models/UserDataModel");
 require("dotenv").config();
 
 function auth(app) {
-  // app.use(
-  //   session({
-  //     secret: process.env.SECRET,
-  //     resave: false,
-  //     saveUninitialized: false,
-  //     cookie: {
-  //       maxAge: 1000 * 60 * 60 * 24 * 15,
-  //     },
-  //   })
-  // );
+  app.set("trust proxy", 1);
+
   app.use(
     session({
       secret: process.env.SECRET,
@@ -25,8 +17,8 @@ function auth(app) {
       cookie: {
         httpOnly: true,
         maxAge: 1000 * 60 * 60 * 24 * 15,
-        secure: true,
-        sameSite: "None",
+        secure: true, // cần HTTPS thực (trust proxy phải được bật)
+        sameSite: "None", // bắt buộc nếu frontend/backend khác domain
       },
     })
   );
