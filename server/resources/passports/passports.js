@@ -26,7 +26,7 @@ function auth(app) {
         httpOnly: true,
         maxAge: 1000 * 60 * 60 * 24 * 15,
         secure: true,
-        sameSite: "none",
+        sameSite: "None",
       },
     })
   );
