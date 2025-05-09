@@ -23,8 +23,9 @@ function auth(app) {
       resave: false,
       saveUninitialized: false,
       cookie: {
+        httpOnly: true,
         maxAge: 1000 * 60 * 60 * 24 * 15,
-        secure: process.env.NODE_ENV === "production",
+        secure: true,
         sameSite: "none",
       },
     })
